@@ -1,0 +1,44 @@
+# @(#) $Tau: mx/docker/mx/main.cf $
+
+## ------------------------------------------------------------------------- ##
+##                          T A U    P R O J E C T                           ##
+## ------------------------------------------------------------------------- ##
+##                                                                           ##
+##  Licensed under the Apache License, Version 2.0 (the "License");          ##
+##  you may not use this file except in compliance with the License.         ##
+##                                                                           ##
+##  You may obtain a copy of the License at:                                 ##
+##                                                                           ##
+##      http://www.apache.org/licenses/LICENSE-2.0                           ##
+##                                                                           ##
+##  Unless required by applicable law or agreed to in writing, software      ##
+##  distributed under the License is distributed on an "AS-IS" BASIS,        ##
+##  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. ##
+##  See the License for the specific language governing permissions and      ##
+##  limitations under the License.                                           ##
+##                                                                           ##
+## ------------------------------------------------------------------------- ##
+
+compatibility_level = 2
+smtpd_banner = $myhostname Tau ESMTP
+biff = no
+#delay_warning_time = 4h
+readme_directory = no
+html_directory = no
+smtpd_tls_cert_file = /app/ssl/ssl-cert-snakeoil.pem
+smtpd_tls_key_file = /app/ssl/ssl-cert-snakeoil.key
+smtpd_use_tls = no
+smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+alias_maps = hash:/app/config/aliases
+alias_database = hash:/app/config/aliases
+myorigin = /app/config/mailname
+mydestination = $myhostname, localhost.$mydomain $mydomain
+home_mailbox = mail/
+relayhost =
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+inet_protocols = all
