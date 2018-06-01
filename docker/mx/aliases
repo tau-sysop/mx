@@ -1,5 +1,4 @@
-#! /bin/sh
-# @(#) $Tau: mx/scripts/docker/entrypoint $
+# @(#) $Tau: mx/docker/mx/aliases $
 
 ## ------------------------------------------------------------------------- ##
 ##                          T A U    P R O J E C T                           ##
@@ -19,24 +18,17 @@
 ##  limitations under the License.                                           ##
 ##                                                                           ##
 ## ------------------------------------------------------------------------- ##
-	
-case "$1" in
-shell)
-	exec /bin/sh
-	;;
-run)
-	if test x"$MAILNAME" = x"" ; then
-		hostname > /app/config/mailname
-	else
-		echo  "$MAILNAME" > /app/config/mailname
-	fi
-	cd /app/config
-	/usr/sbin/postalias hash:aliases
-	/etc/init.d/inetutils-syslogd start || exit
-	/usr/sbin/postfix -c /app/config start || exit
-	tail -f /var/log/mail.log
-	;;
-esac
 
-echo "Usage: $0 shell | run" >&2
-exit 255
+mailer-daemon: postmaster
+postmaster: root
+nobody: root
+hostmaster: root
+usenet: root
+news: root
+webmaster: root
+www: root
+ftp: root
+abuse: root
+noc: root
+security: root
+

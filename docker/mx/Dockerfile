@@ -32,6 +32,7 @@ RUN mkdir -p /app/etc /app/config /app/mail /app/db /app/ssl
 COPY scripts/docker/entrypoint /app/entrypoint
 COPY docker/mx/main.cf /app/config/main.cf
 COPY docker/mx/master.cf /app/config/master.cf
+COPY docker/mx/aliases  /app/config/aliases
 
 CMD [ "run" ]
 
